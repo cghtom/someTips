@@ -25,6 +25,7 @@ Copyright (c) 2017, 1217042356@qq.com All Rights Reserved.<br/><br/><br/><br/>
   
      
 1 文件{
+
     ls -rtl                 # 按时间倒叙列出所有目录和文件 ll -rt
     touch file              # 创建空白文件
     rm -rf 目录名            # 不提示删除非空目录(-r:递归删除 -f强制)
@@ -68,6 +69,7 @@ Copyright (c) 2017, 1217042356@qq.com All Rights Reserved.<br/><br/><br/><br/>
     patch suzu.c < sz.patch                 # 安装补丁
 
     sort排序{
+    
         -t  # 指定排序时所用的栏位分隔字符
         -n  # 依照数值的大小排序
         -r  # 以相反的顺序来排序
@@ -94,6 +96,7 @@ Copyright (c) 2017, 1217042356@qq.com All Rights Reserved.<br/><br/><br/><br/>
     }
 
     find查找{
+    
         # linux文件无创建时间
         # Access 使用时间
         # Modify 内容修改时间
@@ -121,6 +124,7 @@ Copyright (c) 2017, 1217042356@qq.com All Rights Reserved.<br/><br/><br/><br/>
     }
 
     vim编辑器{
+    
         gconf-editor           # 配置编辑器
         /etc/vimrc             # 配置文件路径
         vim +24 file           # 打开文件定位到指定行
@@ -159,6 +163,7 @@ Copyright (c) 2017, 1217042356@qq.com All Rights Reserved.<br/><br/><br/><br/>
     }
 
     归档解压缩{
+    
         tar zxvpf gz.tar.gz -C 放到指定目录 包中的目录       # 解包tar.gz 不指定目录则全解压
         tar zcvpf /$path/gz.tar.gz * # 打包gz 注意*最好用相对路径
         tar zcf /$path/gz.tar.gz *   # 打包正确不提示
@@ -196,6 +201,7 @@ Copyright (c) 2017, 1217042356@qq.com All Rights Reserved.<br/><br/><br/><br/>
     }
 
     svn更新代码{
+    
         --force # 强制覆盖
         /usr/bin/svn --username user --password passwd co  $Code  ${SvnPath}src/                 # 检出整个项目
         /usr/bin/svn --username user --password passwd up  $Code  ${SvnPath}src/                 # 更新项目
@@ -204,6 +210,7 @@ Copyright (c) 2017, 1217042356@qq.com All Rights Reserved.<br/><br/><br/><br/>
     }
 
     git{
+    
         # 编译安装git-1.8.4.4
         ./configure --with-curl --with-expat
         make
@@ -250,6 +257,7 @@ Copyright (c) 2017, 1217042356@qq.com All Rights Reserved.<br/><br/><br/><br/>
     }
 
     恢复rm删除的文件{
+    
         # debugfs针对 ext2   # ext3grep针对 ext3   # extundelete针对 ext4
         df -T   # 首先查看磁盘分区格式
         umount /data/     # 卸载挂载,数据丢失请首先卸载挂载,或重新挂载只读
@@ -273,8 +281,11 @@ Copyright (c) 2017, 1217042356@qq.com All Rights Reserved.<br/><br/><br/><br/>
     }
 
 }
+
 2 软件{
+
     rpm{
+    
         rpm -ivh lynx          # rpm安装
         rpm -e lynx            # 卸载包
         rpm -e lynx --nodeps   # 强制卸载
