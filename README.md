@@ -1,4 +1,9 @@
 # someTips<br/>
+面试注意
+
+职业规划
+
+技术热点
 
 log4j日志级别<br/>
 shell实例手册<br/>
