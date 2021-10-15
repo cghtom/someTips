@@ -1,4 +1,7 @@
 shell手册     
+删除指定文件名的文件
+find /Users/changgaohong/.m2/repository/com/asiainfo/dacp -name "_remote.repositories" -print |xargs rm -rfv
+
 1 文件{
 
     ls -rtl                 # 按时间倒叙列出所有目录和文件 ll -rt
