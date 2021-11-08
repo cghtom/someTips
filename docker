@@ -1,0 +1,76 @@
+本地docker 新建oralce数据库
+
+docker pull registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g
+docker run -d -p 1521:1521 --name oracle11g registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g
+
+docker start oracle11g
+
+docker exec -it oracle11g bash
+
+su root
+密码：helowin
+
+vi /etc/profile
+
+export ORACLE_HOME=/home/oracle/app/oracle/product/11.2.0/dbhome_2
+export ORACLE_SID=helowin
+export PATH=$ORACLE_HOME/bin:$PATH
+
+source /etc/profile
+
+su - oracle
+
+//登录
+sqlplus /nolog
+
+//连接
+conn /as sysdba
+
+//修改密码
+alter user system identified by system;
+alter user sys identified by sys;
+
+//创建用户
+create user dev identified by dev;
+
+//并给用户赋予权限
+grant connect,resource,dba to dev;
+quit
+
+mkdir /home/oracle/tablespace
+
+//登录
+sqlplus /nolog
+
+
+//连接
+conn /as sysdba
+
+
+
+
+<!-- DEFAULT TABLESPACE TEST1-->
+CREATE TABLESPACE TEST1 LOGGING DATAFILE '/home/oracle/tablespace/TEST2.DBF' SIZE 32M AUTOEXTEND ON NEXT 32M MAXSIZE UNLIMITED EXTENT MANAGEMENT LOCAL;
+
+<!-- DEFAULT TABLESPACE TBS_SJGX-->
+CREATE TABLESPACE TBS_SJGX LOGGING DATAFILE '/home/oracle/tablespace/TBS_SJGX2.DBF' SIZE 32M AUTOEXTEND ON NEXT 32M MAXSIZE UNLIMITED EXTENT MANAGEMENT LOCAL;
+
+CREATE USER root IDENTIFIED BY root ACCOUNT UNLOCK DEFAULT TABLESPACE TBS_SJGX;
+GRANT CONNECT,RESOURCE TO root;
+GRANT DBA TO root;
+
+使用数据库客户端连接oracle:
+jdbc:oracle:thin:@localhost:1521:helowin
+root
+root
+
+先执行table2.sql
+再执行table1.sql
+
+执行过程中存在报错时，忽略即可
+
+新增用户：用于登陆
+账号：sys
+密码：Wwz@123
+INSERT INTO DACP_DATAEX_USER (USER_ID, USER_NAME, USER_PWD, CARD_TYPE, CARD_NO, ROLE, CREATE_DT, USER_FACE, PHONE_NO, EMAIL, CARD_NO_TYPE, PAY_TYPE, STATE)
+VALUES ('sys', 'sys', 'RkhlJjjtD9E=', null, null, null, null, null, null, null, null, null, '1');
