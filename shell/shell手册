@@ -1,6 +1,8 @@
 shell手册     
 删除指定文件名的文件
 find /Users/changgaohong/.m2/repository/com/asiainfo/dacp -name "_remote.repositories" -print |xargs rm -rfv
+find ./ -name "_remote.repositories*" -exec rm -rf {} \;
+
 
 1 文件{
 
