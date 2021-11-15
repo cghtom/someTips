@@ -1,4 +1,9 @@
 shell手册     
+
+mac 检测服务器的端口是否开启
+nc -vz -w 2 10.9.238.177 45000
+
+
 删除指定文件名的文件
 find /Users/changgaohong/.m2/repository/com/asiainfo/dacp -name "_remote.repositories" -print |xargs rm -rfv
 find ./ -name "_remote.repositories*" -exec rm -rf {} \;
