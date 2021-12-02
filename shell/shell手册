@@ -1,5 +1,17 @@
 shell手册     
 
+mac：查看文件句柄的数量
+jps 
+查看某个pid打开的文件句柄的数量
+lsof -p portid | wc -l
+
+liunx：查看文件句柄的数量
+查看这个pid持有的句柄数量：
+ls /proc/pid/fd | wc -l
+
+查看当前进程句柄数量限制
+sudo cat /proc/pid/d/limits | grep "files"
+
 mac 检测服务器的端口是否开启
 nc -vz -w 2 10.9.238.177 45000
 
