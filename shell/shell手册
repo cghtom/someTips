@@ -1,5 +1,28 @@
 shell手册     
 
+
+oracle 19c:
+
+docker run --name oracle19c -p 1521:1521 -p 5500:5500 -v /Users/changgaohong/cgh/dockerdata/oracle/19.3/db1:/opt/oracle/oradata 7b5eb4597688
+
+docker exec -it oracle19c /bin/bash
+./setPassword.sh 123456
+grep $ORACLE_HOME /etc/oratab | cut -d: -f1
+export ORACLE_SID=ORCLCDB
+sqlplus / as sysdba
+
+show pdbs;
+alter session set container=ORCLPDB1;
+
+host echo "export ORACLE_SID=ORCLCDB" >> ~/.bashrc
+
+sqlplus SYSTEM/123456@ORCLCDB
+CREATE TABLESPACE TBS LOGGING DATAFILE '/home/oracle/tablespace/TBS.DBF' SIZE 32M AUTOEXTEND ON NEXT 32M MAXSIZE UNLIMITED EXTENT MANAGEMENT LOCAL;
+CREATE USER root2 IDENTIFIED BY root2 DEFAULT TABLESPACE TBS;
+GRANT CONNECT,RESOURCE TO root2;
+GRANT DBA TO root2;
+
+
 mac：查看文件句柄的数量
 jps 
 查看某个pid打开的文件句柄的数量
