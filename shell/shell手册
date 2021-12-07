@@ -1,6 +1,31 @@
 shell手册     
 
 
+## 创建 h2 数据库
+java -cp h2-1.4.200.jar org.h2.tools.Shell
+jdbc:h2:/Users/changgaohong/cgh/db/h2/test1/data.h2;AUTO_SERVER=TRUE;MODE=MySQL;DATABASE_TO_LOWER=TRUE
+
+create schema schema_name;
+comment on schema schema_name is 'schema_name';
+set schema schema_name;
+create table test(
+id int,
+name varchar
+);
+
+
+## oracle 删除用户，删除表空间
+select username from all_users;
+drop user c##dacp cascade;
+select tablespace_name from dba_tablespaces;
+drop tablespace TBS2 including contents ;
+
+drop user dev cascade;
+drop user dev1 cascade;
+drop user DACP_RUNTIME cascade;
+select username from all_users
+
+
 oracle 19c:
 
 docker run --name oracle19c -p 1521:1521 -p 5500:5500 -v /Users/changgaohong/cgh/dockerdata/oracle/19.3/db1:/opt/oracle/oradata 7b5eb4597688
