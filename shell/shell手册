@@ -26,6 +26,44 @@ drop user DACP_RUNTIME cascade;
 select username from all_users
 
 
+
+
+CREATE TABLESPACE TBS_DACP datafile '/home/oracle/tablespace/TBS_DACP.dbf' size 500M autoextend on next 100M maxsize unlimited;
+
+CREATE TABLESPACE TBS_DACP_MDS datafile '/home/oracle/tablespace/TBS_DACP_MDS.dbf'
+    size 500M
+    autoextend on next 100M
+    maxsize unlimited;
+
+CREATE TABLESPACE DACP_MDS datafile '/home/oracle/tablespace/DACP_MDS.dbf'
+    size 500M
+    autoextend on next 100M
+    maxsize unlimited;
+
+create user C##DACP_MDS identified by root;  
+create user C##DACPKF_MDS identified by root;  
+grant create session,connect,resource,dba to C##DACP_MDS,C##DACPKF_MDS;
+
+
+alter user dacp identified by root;  
+alter user DACP_MDS identified by root;  
+alter user DACPKF_MDS identified by root;  
+grant create session,connect,resource,dba to dacp,DACP_MDS,DACPKF_MDS;
+
+show pdbs;
+alter session set container=ORCLPDB1;
+alter pluggable database  open;
+
+imp C##dacp/root file=dacpkf.dump log=dacpkf-data2.log full=y ignore=y
+imp C##dacp_runtime/root file=dacpkf_mds.dump log=dacpkf_mds-data.log full=y ignore=y
+
+
+GRANT SELECT ON a TO "dacp";
+GRANT SELECT ON a TO "DACP_MDS";
+GRANT SELECT ON a TO "DACPKF_MDS";
+
+
+
 oracle 19c:
 
 docker run --name oracle19c -p 1521:1521 -p 5500:5500 -v /Users/changgaohong/cgh/dockerdata/oracle/19.3/db1:/opt/oracle/oradata 7b5eb4597688
